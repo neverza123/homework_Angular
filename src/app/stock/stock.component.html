@@ -1,0 +1,58 @@
+<div [formGroup]="deleteForm" (ngSubmit)="deleteSubmit()" >
+  <input type="text" formControlName="id" placeholder="ID">
+  <button class="btn btn-danger" type="submit">Submit</button>
+ </div>
+
+  <div >
+      <table class="table table-striped" datatable [dtOptions]="dtOptions" >
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>Type</th>
+            <th>price</th>
+            <th>qty</th>
+            <th>exp</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="stocks?.length != 0">
+          <tr *ngFor="let stock of stocks">
+
+            <td>{{ stock.id }}</td>
+            <td>{{ stock.name }}</td>
+            <td>{{ stock.type }}</td>
+            <td>{{ stock.price }}</td>
+            <td>{{ stock.qty }}</td>
+            <td>{{ stock.exp }}</td>
+            <td><button class="btn btn-warning" (click)="changeProduct(stock)">Edit</button></td>
+           <td><button class="btn btn-danger" (click)="deleteProduct(stock)">Delete</button></td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="stocks?.length == 0">
+          <tr>
+            <td colspan="3" class="no-data-available">No data!</td>
+          </tr>
+        </tbody>
+
+
+      </table>
+
+  <div *ngIf="table == 'edit'">
+      <form [formGroup]="editForm" (ngSubmit)="editSubmit()" >
+        <input type="text" formControlName="id" placeholder="ID">
+        <input type="text" formControlName="name" placeholder="name">
+        <input type="text" formControlName="type" placeholder="type">
+        <input type="text" formControlName="price" placeholder="price">
+        <input type="text" formControlName="qty" placeholder="qty">
+        <input type="date" formControlName="exp" >
+        <button class="btn btn-danger" type="submit">Submit</button>
+        </form>
+
+
+
+      </div>
+
+
